@@ -1,0 +1,13 @@
+# setup-lb.yml
+
+---
+
+  - hosts: local
+    vars:
+      variable_to_be_replaced: 'Hello world'
+      inline_variable: 'hello again'
+    tasks: 
+      - name: Craeting template for loadbalancer
+        template:
+          src: ../Config/lb-config.j2
+          dest: ../../lb.conf

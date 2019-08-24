@@ -1,0 +1,16 @@
+# check-status.yml
+
+---
+
+  - hosts: webservers:loadbalancers
+    become: true
+    tasks:
+      - name: Check the status of apache
+        command: service httpd status
+        args:
+          warn: no
+        changed_when: false
+
+      - name: This is not a fail
+        command: /bin/false
+        ignore_errors: yes
